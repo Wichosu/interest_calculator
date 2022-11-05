@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputAmount = () => {
+const InputAmount = ({ amount }) => {
 
 /**
  * TODO: Make sure inputs only accept numbers and percentage in the case of interest
@@ -18,6 +18,7 @@ const InputAmount = () => {
       <input 
         className='form-control'
         id='amount'
+        placeholder={ amount }
       />
     </div>
   );
