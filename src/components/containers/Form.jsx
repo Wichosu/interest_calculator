@@ -6,11 +6,22 @@ import InputAmount from '../pure/InputAmount';
 
 const Form = () => {
 
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(0);
   const valuePrincipal = useRef();
+  const valueInterest = useRef();
+  const valueTime = useRef();
+
+  const getAmount = (form) => {
+    form.preventDefault();
+    const principal = valuePrincipal.current.value;
+    const interest = valueInterest.current.value / 100;
+    const time = valueTime.current.value;
+    const formula = principal * Math.pow((1 + interest), time);
+    setResult(formula.toFixed(2));
+  }
 
   return (
-    <form>
+    <form onSubmit={getAmount}>
       <div className='mb-3'>
         <label 
           className='my-3 text-start form-label' 
@@ -36,6 +47,7 @@ const Form = () => {
         <input 
           className='form-control'
           id='interest'
+          ref={valueInterest}
         />
       </div>
       <div>
@@ -49,6 +61,7 @@ const Form = () => {
         <input 
           className='form-control'
           id='time'
+          ref={valueTime}
         />
       </div>
       <InputAmount 
