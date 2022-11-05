@@ -1,6 +1,6 @@
 import React from 'react';
 
-const inputPrincipal = () => {
+const InputPrincipal = () => {
   return (
     <div className='mb-3'>
       <label 
@@ -17,4 +17,4 @@ const inputPrincipal = () => {
   );
 }
 
-export default inputPrincipal;
+export default InputPrincipal;
