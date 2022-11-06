@@ -1,19 +1,15 @@
-import Title from './components/pure/title.jsx';
-import InputPrincipal from './components/pure/inputPrincipal.jsx';
-import InputInterest from './components/pure/inputInterest.jsx';
-import InputTime from './components/pure/inputTime.jsx';
-import InputAmount from './components/pure/inputAmount.jsx';
+import Title from './components/pure/Title.jsx';
+import InputPrincipal from './components/pure/InputPrincipal.jsx';
+import InputInterest from './components/pure/InputInterest.jsx';
+import InputTime from './components/pure/InputTime.jsx';
+import InputAmount from './components/pure/InputAmount.jsx';
+import Form from './components/containers/Form.jsx';
 
 function App() {
   return (
     <div className="container">
-      <header className="App-header">
-        <Title />
-        <InputPrincipal />
-        <InputInterest />
-        <InputTime />
-        <InputAmount />
-      </header>
+      <Title />
+      <Form />
     </div>
   );
 }

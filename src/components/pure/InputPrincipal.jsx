@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
-const inputPrincipal = () => {
+const InputPrincipal = ({ getPrincipal }) => {
+
+  const valuePrincipal = useRef();
+
   return (
     <div className='mb-3'>
       <label 
@@ -12,9 +15,11 @@ const inputPrincipal = () => {
       </label>
       <input 
         className='form-control' 
-        id='principal'/>
+        id='principal'
+        ref={valuePrincipal}
+      />
     </div>
   );
 }
 
-export default inputPrincipal;
+export default InputPrincipal;
