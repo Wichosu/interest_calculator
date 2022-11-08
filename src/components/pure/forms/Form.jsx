@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import InputAmount from '../pure/InputAmount';
+import InputAmount from '../InputAmount';
 // import InputInterest from '../pure/InputInterest';
 // import InputPrincipal from '../pure/InputPrincipal';
 // import InputTime from '../pure/InputTime';
