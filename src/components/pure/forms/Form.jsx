@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import InputAmount from '../pure/InputAmount';
+import React, { useState, useRef, useEffect } from 'react';
+import InputAmount from '../InputAmount';
 // import InputInterest from '../pure/InputInterest';
 // import InputPrincipal from '../pure/InputPrincipal';
 // import InputTime from '../pure/InputTime';
@@ -10,6 +10,16 @@ const Form = () => {
   const valuePrincipal = useRef();
   const valueInterest = useRef();
   const valueTime = useRef();
+
+  // useEffect(() => {
+  //   if(valuePrincipal.current.value && valueInterest.current.value && valueTime.current.value) {
+  //     const principal = valuePrincipal.current.value;
+  //     const interest = valueInterest.current.value / 100;
+  //     const time = valueTime.current.value;
+  //     const formula = principal * Math.pow((1 + interest), time);
+  //     setResult(formula.toFixed(2));
+  //   }
+  // }, [])
 
   const getAmount = (form) => {
     form.preventDefault();
