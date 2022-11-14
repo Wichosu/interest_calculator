@@ -28,7 +28,7 @@ const Form = () => {
 
   return (
     <formContext.Provider value={{result}}>
-      <form onSubmit={getAmount} style={{width: '500px'}}>
+      <form onSubmit={getAmount} style={{width: '14rem'}}>
         <div className='mb-3'>
           <label 
             className='my-3 text-start form-label' 
