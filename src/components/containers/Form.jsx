@@ -1,8 +1,14 @@
-import React, { useState, useRef } from 'react';
-import InputAmount from '../pure/InputAmount';
-// import InputInterest from '../pure/InputInterest';
-// import InputPrincipal from '../pure/InputPrincipal';
-// import InputTime from '../pure/InputTime';
+import React, { useState, useRef, useContext, createContext } from 'react';
+
+const formContext = createContext(null);
+
+/**
+* Styles
+*/
+
+const labelStyle = {
+  fontSize: '1.2rem'
+}
 
 const Form = () => {
 
@@ -21,55 +27,74 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={getAmount}>
-      <div className='mb-3'>
-        <label 
-          className='my-3 text-start form-label' 
-          style={{fontSize: '1.5rem'}} 
-          htmlFor='principal'
-        >
-          Principal
-        </label>
-        <input 
-          className='form-control' 
-          id='principal'
-          ref={valuePrincipal}
-        />
-      </div>
-      <div className='mb-3'>
-        <label 
-          className='my-3 text-start form-label'
-          style={{fontSize: '1.5rem'}}
-          htmlFor='interest'
-        >
-          Interest
-        </label>
-        <input 
-          className='form-control'
-          id='interest'
-          ref={valueInterest}
-        />
-      </div>
-      <div>
-        <label 
-          className='my-3 text-start form-label'
-          style={{fontSize: '1.5rem'}}
-          htmlFor='time'
-        >
-          Time
-        </label>
-        <input 
-          className='form-control'
-          id='time'
-          ref={valueTime}
-        />
-      </div>
-      <InputAmount 
-        amount={result}
-      />
-      <button className='btn btn-success my-4'>Calculate</button>
-    </form>
+    <formContext.Provider value={{result}}>
+      <form onSubmit={getAmount} style={{width: '500px'}}>
+        <div className='mb-3'>
+          <label 
+            className='my-3 text-start form-label' 
+            style={labelStyle} 
+            htmlFor='principal'
+          >
+            Principal
+          </label>
+          <input 
+            className='form-control' 
+            id='principal'
+            ref={valuePrincipal}
+          />
+        </div>
+        <div className='mb-3'>
+          <label 
+            className='my-3 text-start form-label'
+            style={labelStyle}
+            htmlFor='interest'
+          >
+            Interest
+          </label>
+          <input 
+            className='form-control'
+            id='interest'
+            ref={valueInterest}
+          />
+        </div>
+        <div>
+          <label 
+            className='my-3 text-start form-label'
+            style={labelStyle}
+            htmlFor='time'
+          >
+            Time
+          </label>
+          <input 
+            className='form-control'
+            id='time'
+            ref={valueTime}
+          />
+        </div>
+        <Amount />
+        <button className='btn btn-success my-4'>Calculate</button>
+      </form>
+    </formContext.Provider>
   );
+}
+
+const Amount = () => {
+  const {
+    result
+  } = useContext(formContext);
+
+  return (
+    <div>
+      <p className='my-3'>
+        <strong>
+          Amount
+        </strong>
+      </p>
+      <p className='lead'>
+        { result }
+      </p>
+    </div>
+  )
 }
 
 export default Form;

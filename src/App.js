@@ -10,6 +10,8 @@ function App() {
     <div className="container">
       <Title />
       <Form />
+      {/* <CallbackRef /> */}
+      <RechartGraph />
     </div>
   );
 }
