@@ -10,8 +10,8 @@ import RechartGraph from './components/pure/tests/RechartGraph.jsx';
 function App() {
   return (
     <div className="container">
-      {/* <Title /> */}
-      {/* <Form /> */}
+      <Title />
+      <Form />
       {/* <CallbackRef /> */}
       <RechartGraph />
     </div>
