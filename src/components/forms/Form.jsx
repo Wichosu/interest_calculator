@@ -1,11 +1,10 @@
 import React, { useState, useRef, useContext, createContext } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
-
+import { DataSchema } from '../../models/DataSchema.class';
 const formContext = createContext(null);
 
-// ?Important Optimize code (don't use that many variables)
-// ?Apply better styles, some colors on the graph
 // ?Document code
+// TODO Ideas: Mobile view, Switch lang es or en, multiple calculators
 
 /**
 * Styles
@@ -13,6 +12,13 @@ const formContext = createContext(null);
 
 const labelStyle = {
   fontSize: '1.2rem'
+}
+
+const fillColors = {
+  principal: "#3CB9C3",
+  interest: "#FFDE00",
+  amount: "#53C43B",
+  cursor: "#FAFAFA",
 }
 
 const Form = () => {
@@ -40,13 +46,13 @@ const Form = () => {
       prin = amount;
       amount = amount * (1 + interest);
       tempArray.push(
-        {
-          name: `Year ${time}`,
-          principal: prin.toFixed(2),
-          amount: amount.toFixed(2),
-          interest: interestProfit.toFixed(2), 
-        }
-      )
+        new DataSchema(
+          `Year ${time}`,
+          prin.toFixed(2),
+          amount.toFixed(2),
+          interestProfit.toFixed(2),
+        )
+      );
     }
     setData(tempArray);
   }
@@ -63,6 +69,14 @@ const Form = () => {
             >
               Principal
             </label>
+            <i 
+              className='mx-3 bi bi-square-fill' 
+              style={{color: fillColors.principal}}
+            />
+            <i 
+              className='bi bi-cash' 
+              style={{color: fillColors.principal, fontSize: labelStyle.fontSize}}
+            />
             <input 
               className='form-control' 
               id='principal'
@@ -77,6 +91,14 @@ const Form = () => {
             >
               Interest
             </label>
+            <i 
+              className='mx-3 bi bi-square-fill' 
+              style={{color: fillColors.interest}}
+            />
+            <i 
+              className='bi bi-percent'
+              style={{color: fillColors.interest, fontSize: labelStyle.fontSize}}
+            />
             <input 
               className='form-control'
               id='interest'
@@ -117,6 +139,14 @@ const Amount = () => {
         <strong>
           Amount
         </strong>
+        <i 
+          className='mx-3 bi bi-square-fill' 
+          style={{color: fillColors.amount}}
+        />
+        <i
+          className='bi bi-cash-coin'
+          style={{color: fillColors.amount, fontSize: labelStyle.fontSize}}
+        />
       </p>
       <p className='lead'>
         { result }
