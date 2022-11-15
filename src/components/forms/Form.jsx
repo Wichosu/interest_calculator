@@ -3,6 +3,10 @@ import CompoundGraph from '../graph/CompoundGraph';
 
 const formContext = createContext(null);
 
+// ?Important Optimize code (don't use that many variables)
+// ?Apply better styles, some colors on the graph
+// ?Document code
+
 /**
 * Styles
 */
@@ -23,20 +27,23 @@ const Form = () => {
     form.preventDefault();
     const principal = valuePrincipal.current.value;
     const interest = valueInterest.current.value / 100;
-    const time = valueTime.current.value;
-    const formula = principal * Math.pow((1 + interest), time);
+    const Time = valueTime.current.value;
+    const formula = principal * Math.pow((1 + interest), Time);
     setResult(formula.toFixed(2));
     // TODO Optimize this block
     let tempArray = [];
-    let amount = principal;
+    let prin = Number(principal);
+    let amount = Number(principal);
     let interestProfit = 0;
-    for(let time = 1; time <= 5; time++) {
+    for(let time = 1; time <= Time; time++) {
       interestProfit = amount * interest;
+      prin = amount;
       amount = amount * (1 + interest);
       tempArray.push(
         {
           name: `Year ${time}`,
-          principal: principal,
+          principal: prin.toFixed(2),
+          amount: amount.toFixed(2),
           interest: interestProfit.toFixed(2), 
         }
       )

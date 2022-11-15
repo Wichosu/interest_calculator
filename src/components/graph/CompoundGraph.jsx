@@ -10,6 +10,7 @@ const CompoundGraph = ({ data }) => {
       <Tooltip cursor={{ fill: 'blue' }}/>
       <Bar dataKey="principal" stackId="a" fill="#ccc" />
       <Bar dataKey="interest" stackId="a" fill="#000" />
+      <Bar dataKey="amount"  fill="#555" />
     </BarChart>
   )
 }
