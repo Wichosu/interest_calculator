@@ -1,6 +1,11 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
+/**
+ * 
+ * @param {*} data Receives an array of objects 
+ * @returns {CompoundGraph} A graph displaying the given data 
+*/
 const CompoundGraph = ({ data }) => {
 
   const fillColors = {
