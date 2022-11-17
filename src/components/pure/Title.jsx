@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * 
+ * @returns {Title} Component for diferent titles
+ */
 const Title = () => {
   return (
     <div>
