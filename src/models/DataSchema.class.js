@@ -1,3 +1,6 @@
+/**
+ * @returns {DataSchema} Class. Class/Constructor to create a data object for charts
+ */
 export class DataSchema {
   name = '';
   principal = 0;

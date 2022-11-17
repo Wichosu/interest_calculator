@@ -3,17 +3,25 @@ import CompoundGraph from '../graph/CompoundGraph';
 import { DataSchema } from '../../models/DataSchema.class';
 const formContext = createContext(null);
 
-// ?Document code
-// TODO Ideas: Mobile view, Switch lang es or en, multiple calculators
+// !Document code
+// !Validate Form
+// ? Ideas: Mobile view, Switch lang es or en, multiple calculators
 
 /**
-* Styles
-*/
-
+ * Styles for labels and icons
+ * @returns {fontSize} 1.2rem
+ */
 const labelStyle = {
   fontSize: '1.2rem'
 }
 
+/**
+ * Color for Graph and icons
+ * @returns {principal} #3CB9C3 Blue 
+ * @returns {interest} #FFDE00 Yellow 
+ * @returns {amount} #53C43B Green 
+ * @returns {cursor} #FAFAFA Gray 
+ */
 const fillColors = {
   principal: "#3CB9C3",
   interest: "#FFDE00",
@@ -21,6 +29,9 @@ const fillColors = {
   cursor: "#FAFAFA",
 }
 
+/**
+ * @returns {Form} Component with compound interest calculator.
+ */
 const Form = () => {
 
   const [result, setResult] = useState(0);
@@ -29,6 +40,12 @@ const Form = () => {
   const valueInterest = useRef();
   const valueTime = useRef();
 
+  /**
+   *Calculates the final amount 
+   * @param {*} form Tag from html
+   * @returns {result} Number. amount after interest
+   * @returns {data} Array. Contains objects with data for barchart
+   */
   const getAmount = (form) => {
     form.preventDefault();
     const principal = valuePrincipal.current.value;
@@ -128,6 +145,10 @@ const Form = () => {
   );
 }
 
+/**
+ * 
+ * @returns {Amount} Displays total amount after interest
+ */
 const Amount = () => {
   const {
     result
