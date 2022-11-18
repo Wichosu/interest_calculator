@@ -1,8 +1,9 @@
-import React, { useState, useRef, useContext, createContext } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
 import { DataSchema } from '../../models/DataSchema.class';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import '../../dist/output.css';
 
 const formContext = createContext(null);
 
@@ -56,9 +57,6 @@ const FormComponent = () => {
 
   const [result, setResult] = useState(0);
   const [data, setData] = useState([{}]);
-  const valuePrincipal = useRef();
-  const valueInterest = useRef();
-  const valueTime = useRef();
 
   /**
    *Calculates the final amount 
@@ -72,7 +70,9 @@ const FormComponent = () => {
     const Time = Number(form.time);
     const formula = principal * Math.pow((1 + interest), Time);
     setResult(formula.toFixed(2));
-    // TODO Optimize this block
+    
+    // Get Data for graph
+
     let tempArray = [];
     let prin = Number(principal);
     let amount = Number(principal);
@@ -106,15 +106,27 @@ const FormComponent = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <Field name='principal' />
-              { errors.principal && touched.principal ? 
-              (
+              <label className='block mt-9'>
+                <span className='block text-slate-600 mb-2'>Principal</span>
+                <Field 
+                   name='principal' 
+                   className='block border border-slate-300 rounded-md w-40 pl-4 placeholder:text-slate-400' 
+                   placeholder='100'
+                   type='text' 
+                />
+                { errors.principal && touched.principal ? 
+                (
                 <div>{ errors.principal }</div>
-              )
-              :
-              null
-              }
-              <Field name='interest' />
+                )
+                :
+                null
+                }
+              </label>
+              <Field 
+                name='interest' 
+                className='block border border-slate-300 rounded-md w-40 mt-9 pl-4 placeholder:text-slate-400'
+                placeholder='10%'
+                />
               { errors.interest && touched.interest ?
               (
                 <div>{ errors.interest }</div>
@@ -122,7 +134,10 @@ const FormComponent = () => {
               :
               null
               } 
-              <Field name='time' />
+              <Field 
+                name='time' 
+                className='block border border-slate-300 rounded-md w-40 mt-9 pl-4 placeholder:text-slate-400'
+                />
               { errors.time && touched.time ?
               (
                 <div>{ errors.time }</div>
