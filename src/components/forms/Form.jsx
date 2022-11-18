@@ -1,9 +1,11 @@
 import React, { useState, useRef, useContext, createContext } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
 import { DataSchema } from '../../models/DataSchema.class';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+
 const formContext = createContext(null);
 
-// !Document code
 // !Validate Form
 // ? Ideas: Mobile view, Switch lang es or en, multiple calculators
 
@@ -30,9 +32,27 @@ const fillColors = {
 }
 
 /**
- * @returns {Form} Component with compound interest calculator.
+ * Form schema
  */
-const Form = () => {
+const formSchema = Yup.object().shape({
+  principal: Yup.number()
+    .typeError('Must be a number!')
+    .positive('Only positive number!')
+    .required('Required!'),
+  interest: Yup.number()
+    .typeError('Must be a number!')
+    .positive('Only positive number!')
+    .required('Required!'),
+  time: Yup.number()
+    .typeError('Must be a number!')
+    .positive('Only positive number!')
+    .required('Required!'),
+})
+
+/**
+ * @returns {FormComponent} Component with compound interest calculator.
+ */
+const FormComponent = () => {
 
   const [result, setResult] = useState(0);
   const [data, setData] = useState([{}]);
@@ -47,10 +67,9 @@ const Form = () => {
    * @returns {data} Array. Contains objects with data for barchart
    */
   const getAmount = (form) => {
-    form.preventDefault();
-    const principal = valuePrincipal.current.value;
-    const interest = valueInterest.current.value / 100;
-    const Time = valueTime.current.value;
+    const principal = Number(form.principal);
+    const interest = Number(form.interest / 100);
+    const Time = Number(form.time);
     const formula = principal * Math.pow((1 + interest), Time);
     setResult(formula.toFixed(2));
     // TODO Optimize this block
@@ -77,68 +96,45 @@ const Form = () => {
   return (
     <formContext.Provider value={{result}}>
       <div style={{display: 'flex'}}>
-        <form onSubmit={getAmount} style={{width: '14rem'}}>
-          <div className='mb-3'>
-            <label 
-              className='my-3 text-start form-label' 
-              style={labelStyle} 
-              htmlFor='principal'
-            >
-              Principal
-            </label>
-            <i 
-              className='mx-3 bi bi-square-fill' 
-              style={{color: fillColors.principal}}
-            />
-            <i 
-              className='bi bi-cash' 
-              style={{color: fillColors.principal, fontSize: labelStyle.fontSize}}
-            />
-            <input 
-              className='form-control' 
-              id='principal'
-              ref={valuePrincipal}
-            />
-          </div>
-          <div className='mb-3'>
-            <label 
-              className='my-3 text-start form-label'
-              style={labelStyle}
-              htmlFor='interest'
-            >
-              Interest
-            </label>
-            <i 
-              className='mx-3 bi bi-square-fill' 
-              style={{color: fillColors.interest}}
-            />
-            <i 
-              className='bi bi-percent'
-              style={{color: fillColors.interest, fontSize: labelStyle.fontSize}}
-            />
-            <input 
-              className='form-control'
-              id='interest'
-              ref={valueInterest}
-            />
-          </div>
-          <div>
-            <label 
-              className='my-3 text-start form-label'
-              style={labelStyle}
-              htmlFor='time'
-            >
-              Time
-            </label>
-            <input 
-              className='form-control'
-              id='time'
-              ref={valueTime}
-            />
-          </div>
-          <Amount />
-          <button className='btn btn-success my-4'>Calculate</button>
-        </form>
+        <Formik 
+          initialValues={{principal: '', interest: '', time: ''}}
+          validationSchema={formSchema}
+          onSubmit={values => {
+            console.log(values)
+            getAmount(values)
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <Field name='principal' />
+              { errors.principal && touched.principal ? 
+              (
+                <div>{ errors.principal }</div>
+              )
+              :
+              null
+              }
+              <Field name='interest' />
+              { errors.interest && touched.interest ?
+              (
+                <div>{ errors.interest }</div>
+              )
+              :
+              null
+              } 
+              <Field name='time' />
+              { errors.time && touched.time ?
+              (
+                <div>{ errors.time }</div>
+              )
+              :
+              null
+              }
+              <button className='btn btn-success my-4' type='submit'>Calculate</button>
+            </Form>
+          )}
+        </Formik>
+        <Amount />
         <CompoundGraph data={data} />
       </div>
     </formContext.Provider>
@@ -176,4 +172,4 @@ const Amount = () => {
   )
 }
 
-export default Form;
+export default FormComponent;
