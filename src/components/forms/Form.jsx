@@ -95,67 +95,73 @@ const FormComponent = () => {
 
   return (
     <formContext.Provider value={{result}}>
-      <div style={{display: 'flex'}}>
-        <Formik 
-          initialValues={{principal: '', interest: '', time: ''}}
-          validationSchema={formSchema}
-          onSubmit={values => {
-            console.log(values)
-            getAmount(values)
-          }}
-        >
-          {({ errors, touched }) => (
-            <Form>
-              <label className='block mt-9'>
-                <span className='block text-slate-600 mb-2'>Principal</span>
-                <Field 
-                   name='principal' 
-                   className='block border border-slate-300 rounded-md w-40 pl-4 placeholder:text-slate-400' 
-                   placeholder='100'
-                   type='text' 
-                />
-                { errors.principal && touched.principal ? 
-                (
-                <div>{ errors.principal }</div>
-                )
-                :
-                null
-                }
-              </label>
-              <Field 
-                name='interest' 
-                className='block border border-slate-300 rounded-md w-40 mt-9 pl-4 placeholder:text-slate-400'
-                placeholder='10%'
-                />
-              { errors.interest && touched.interest ?
-              (
-                <div>{ errors.interest }</div>
-              )
-              :
-              null
-              } 
-              <Field 
-                name='time' 
-                className='block border border-slate-300 rounded-md w-40 mt-9 pl-4 placeholder:text-slate-400'
-                />
-              { errors.time && touched.time ?
-              (
-                <div>{ errors.time }</div>
-              )
-              :
-              null
-              }
-              <button className='btn btn-success my-4' type='submit'>Calculate</button>
-            </Form>
-          )}
-        </Formik>
-        <Amount />
+      <div className='flex'>
+        <div>
+          <Formik 
+            initialValues={{principal: '', interest: '', time: ''}}
+            validationSchema={formSchema}
+            onSubmit={values => getAmount(values)}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <label className='block'>
+                  <span className='block text-slate-800 mb-2'>Principal</span>
+                  <Field 
+                     name='principal' 
+                     className='block border border-slate-300 rounded w-40 pl-4 placeholder:text-slate-400' 
+                     placeholder='100'
+                     type='text' 
+                  />
+                  { errors.principal && touched.principal ? 
+                  (
+                  <div className='text-red-600'>{ errors.principal }</div>
+                  )
+                  :
+                  null
+                  }
+                </label>
+                <label className='block mt-5'>
+                  <span className='block text-slate-800 mb-2'>Interest</span>
+                  <Field 
+                    name='interest' 
+                    className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
+                    placeholder='10%'
+                  />
+                  { errors.interest && touched.interest ?
+                  (
+                  <div className='text-red-600'>{ errors.interest }</div>
+                  )
+                  :
+                  null
+                  } 
+                </label>
+                <label className='block mt-5'>
+                  <span className='block text-slate-800 mb-2'>Time</span>
+                  <Field 
+                    name='time' 
+                    className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
+                    placeholder='10'
+                  />
+                  { errors.time && touched.time ?
+                  (
+                  <div className='text-red-600'>{ errors.time }</div>
+                  )
+                  :
+                  null
+                  }
+                </label>
+                <button className='mt-10 px-4 py-1 border border-lime-600 rounded bg-lime-400 text-slate-800 ' type='submit'>Calculate</button>
+              </Form>
+            )}
+          </Formik>
+          <Amount />
+        </div>
         <CompoundGraph data={data} />
       </div>
     </formContext.Provider>
   );
 }
-
+/* !!! Make amount a separete component to be reused in multiple calculators*/
 /**
  * 
  * @returns {Amount} Displays total amount after interest
@@ -166,8 +172,8 @@ const Amount = () => {
   } = useContext(formContext);
 
   return (
-    <div>
-      <p className='my-3'>
+    <div className='mt-10'>
+      <p>
         <strong>
           Amount
         </strong>
@@ -180,7 +186,7 @@ const Amount = () => {
           style={{color: fillColors.amount, fontSize: labelStyle.fontSize}}
         />
       </p>
-      <p className='lead'>
+      <p className='text-slate-900'>
         { result }
       </p>
     </div>
