@@ -7,7 +7,7 @@ import '../../dist/output.css';
 const Title = () => {
   return (
     <div>
-      <p className='text-6xl font-sans font-normal'>Calculadora de Intereses</p>
+      <p className='my-6 text-6xl font-sans font-normal'>Calculadora de Intereses</p>
     </div>
   );
 }
