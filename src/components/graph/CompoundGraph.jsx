@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-
+import '../../dist/output.css';
 /**
  * 
  * @param {*} data Receives an array of objects 
@@ -8,26 +8,51 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 */
 const CompoundGraph = ({ data }) => {
 
-  const fillColors = {
-    principal: "#3CB9C3",
-    interest: "#FFDE00",
-    amount: "#53C43B",
-    cursor: "#FAFAFA",
+  const [matches, setMatches] = useState(window.matchMedia("(max-width: 768px)").matches);
+
+  useEffect(() => {
+    window
+      .matchMedia("(max-width: 768px)")
+      .addEventListener('change', e => setMatches(e.matches));
+  }, []);
+
+  const colors = {
+    principal: "#60a5fa", //blue-400
+    interest: "#facc15", //yellow-400
+    amount: "#34d399", //emerald-400
+    background: "#f8fafc", //slate-50
+    label: "#0f172a"
   }
 
+  const chartSize = matches ? 
+    {
+    width: 300,
+    height: 250,
+    }
+  :
+    {
+      width: 800,
+      height: 500,
+    };
+
   return (
-    <BarChart width={500} height={500} data={data}>
-      <CartesianGrid strokeDasharray="9"/>
+    <BarChart 
+      className={matches ? 'mt-6' : 'mt-0'} 
+      width={chartSize.width} height={chartSize.height} 
+      data={data}
+    >
+      <CartesianGrid />
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip 
-        cursor={{ fill: fillColors.cursor }} 
-        wrapperStyle={{ fill: fillColors.cursor }}
+        cursor={{ fill: colors.background }} 
+        contentStyle={{ backgroundColor: colors.background }}
+        labelStyle={{ color: colors.label }}
         // itemStyle={{color: "#333333"}}
         />
-      <Bar dataKey="principal" stackId="a" fill={fillColors.principal} />
-      <Bar dataKey="interest" stackId="a" fill={fillColors.interest} />
-      <Bar dataKey="amount"  fill={fillColors.amount} />
+      <Bar dataKey="principal" stackId="a" fill={colors.principal} />
+      <Bar dataKey="interest" stackId="a" fill={colors.interest} />
+      <Bar dataKey="amount"  fill={colors.amount} />
     </BarChart>
   )
 }
