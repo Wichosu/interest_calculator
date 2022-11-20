@@ -4,7 +4,7 @@ import './dist/output.css';
 
 function App() {
   return (
-    <div className=" container mx-auto px-20">
+    <div className=" container md:mx-auto md:px-20 px-4">
       <Title />
       <Form />
       {/* <CallbackRef /> */}

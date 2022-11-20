@@ -7,22 +7,7 @@ import '../../dist/output.css';
 
 const formContext = createContext(null);
 
-// !Validate Form
 // ? Ideas: Mobile view, Switch lang es or en, multiple calculators
-
-/**
- * Color for Graph and icons
- * @returns {principal} #3CB9C3 Blue 
- * @returns {interest} #FFDE00 Yellow 
- * @returns {amount} #53C43B Green 
- * @returns {cursor} #FAFAFA Gray 
- */
-const fillColors = {
-  principal: "#3CB9C3",
-  interest: "#FFDE00",
-  amount: "#53C43B",
-  cursor: "#FAFAFA",
-}
 
 /**
  * Form schema
@@ -102,10 +87,10 @@ const FormComponent = () => {
                     <p className='ml-3 mt-1 rounded h-4 w-4 bg-blue-400' />
                   </div>
                   <Field 
-                     name='principal' 
-                     className='block border border-slate-300 rounded w-40 pl-4 placeholder:text-slate-400' 
-                     placeholder='100'
-                     type='text' 
+                    name='principal' 
+                    className='block border border-slate-300 rounded w-40 pl-4 placeholder:text-slate-400' 
+                    placeholder='100'
+                    type='number' 
                   />
                   { errors.principal && touched.principal ? 
                   (
@@ -124,6 +109,7 @@ const FormComponent = () => {
                     name='interest' 
                     className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
                     placeholder='10%'
+                    type='number'
                   />
                   { errors.interest && touched.interest ?
                   (
@@ -139,6 +125,7 @@ const FormComponent = () => {
                     name='time' 
                     className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
                     placeholder='10'
+                    type='number'
                   />
                   { errors.time && touched.time ?
                   (
@@ -159,7 +146,7 @@ const FormComponent = () => {
     </formContext.Provider>
   );
 }
-/* !!! Make amount a separete component to be reused in multiple calculators*/
+//! Make amount a separete component to be reused in multiple calculators
 /**
  * 
  * @returns {Amount} Displays total amount after interest
