@@ -11,14 +11,6 @@ const formContext = createContext(null);
 // ? Ideas: Mobile view, Switch lang es or en, multiple calculators
 
 /**
- * Styles for labels and icons
- * @returns {fontSize} 1.2rem
- */
-const labelStyle = {
-  fontSize: '1.2rem'
-}
-
-/**
  * Color for Graph and icons
  * @returns {principal} #3CB9C3 Blue 
  * @returns {interest} #FFDE00 Yellow 
@@ -95,7 +87,7 @@ const FormComponent = () => {
 
   return (
     <formContext.Provider value={{result}}>
-      <div className='flex'>
+      <div className='md:flex'>
         <div>
           <Formik 
             initialValues={{principal: '', interest: '', time: ''}}
@@ -105,7 +97,10 @@ const FormComponent = () => {
             {({ errors, touched }) => (
               <Form>
                 <label className='block'>
-                  <span className='block text-slate-800 mb-2'>Principal</span>
+                  <div className='flex'>
+                    <span className='block text-slate-800 mb-2'>Principal</span>
+                    <p className='ml-3 mt-1 rounded h-4 w-4 bg-blue-400' />
+                  </div>
                   <Field 
                      name='principal' 
                      className='block border border-slate-300 rounded w-40 pl-4 placeholder:text-slate-400' 
@@ -121,7 +116,10 @@ const FormComponent = () => {
                   }
                 </label>
                 <label className='block mt-5'>
-                  <span className='block text-slate-800 mb-2'>Interest</span>
+                  <div className='flex'>
+                    <span className='block text-slate-800 mb-2'>Interest</span>
+                    <p className='ml-3 mt-1 rounded h-4 w-4 bg-yellow-400' />
+                  </div>
                   <Field 
                     name='interest' 
                     className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
@@ -150,7 +148,7 @@ const FormComponent = () => {
                   null
                   }
                 </label>
-                <button className='mt-10 px-4 py-1 border border-lime-600 rounded bg-lime-400 text-slate-800 ' type='submit'>Calculate</button>
+                <button className='mt-10 px-4 py-1 rounded bg-lime-400 text-slate-800 ' type='submit'>Calculate</button>
               </Form>
             )}
           </Formik>
@@ -173,18 +171,9 @@ const Amount = () => {
 
   return (
     <div className='mt-10'>
-      <p>
-        <strong>
-          Amount
-        </strong>
-        <i 
-          className='mx-3 bi bi-square-fill' 
-          style={{color: fillColors.amount}}
-        />
-        <i
-          className='bi bi-cash-coin'
-          style={{color: fillColors.amount, fontSize: labelStyle.fontSize}}
-        />
+      <p className='flex'>
+        <strong className='text-slate-800'>Amount</strong>
+        <p className='ml-3 mt-1 rounded h-4 w-4 bg-emerald-400' />
       </p>
       <p className='text-slate-900'>
         { result }
