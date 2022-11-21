@@ -4,8 +4,8 @@ import '../../dist/output.css';
 
 function CompoundCalc() {
   return (
-    <div className="container md:mx-auto md:px-20 px-4">
-      <Title />
+    <div className="container md:px-20 px-4">
+      <Title title={'Compound Interest Calculator'}/>
       <CompoundInterest />
     </div>
   );
