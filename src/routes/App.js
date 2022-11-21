@@ -1,14 +1,43 @@
-import Title from '../components/pure/Title.jsx';
-import CompoundInterest from '../components/forms/CompoundInterest.jsx';
-import '../dist/output.css';
+import React from 'react';
+import { Routes, Route, Outlet, Link } from 'react-router-dom';
+import CompoundCalc from '../pages/compound/CompundCalc';
 
-function App() {
+export default function App() {
   return (
-    <div className="container md:mx-auto md:px-20 px-4">
-      <Title />
-      <CompoundInterest />
+    <div>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='/compound-interest' element={<CompoundCalc />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
 
-export default App;
+function Layout() {
+  return (
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/compound-interest'>Compound Interest Calculator</Link>
+          </li>
+        </ul>
+      </nav>
+      <hr />
+      <Outlet />
+    </div>
+  );
+}
+
+function Home() {
+  return(
+    <div>
+      <p>This is home</p>
+    </div>
+  )
+}
