@@ -31,7 +31,7 @@ const CompoundGraph = ({ data }) => {
     }
   :
     {
-      width: 800,
+      width: 500,
       height: 500,
     };
 
