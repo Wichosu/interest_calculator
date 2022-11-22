@@ -133,7 +133,7 @@ const CompoundInterest = () => {
                 null
                 }
               </label>
-              <button className='mt-10 px-4 py-1 rounded bg-lime-400 text-slate-800 ' type='submit'>Calculate</button>
+              <button className='mt-10 px-4 py-1 rounded bg-lime-400 text-slate-800 hover:shadow' type='submit'>Calculate</button>
             </Form>
           )}
         </Formik>

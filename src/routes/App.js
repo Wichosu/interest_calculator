@@ -17,6 +17,10 @@ export default function App() {
   );
 }
 
+/**
+ * 
+ * @returns Navbar and outlet(content of my website)
+ */
 function Layout() {
 
   const [menu, setMenu] = useState(false);
@@ -44,24 +48,24 @@ function Layout() {
 
   return (
     <div className='md:flex'>
-      <div className='md:hidden sticky top-0 w-screen bg-slate-100'>
+      <div className='md:hidden sticky top-0 w-screen bg-slate-50 shadow-sm'>
         <div 
-          className='flex items-center pl-4 py-2 text-4xl md:hidden'
+          className='flex text-slate-700 items-center pl-4 py-2 text-4xl md:hidden'
         >
           <ion-icon onClick={SwitchMenu} name={menu ? 'close' : 'menu'} />
-          <p className='mx-auto'>Finance App</p>
+          <p className='mx-auto text-2xl text-slate-700'>Finance App</p>
         </div>
       </div>
       <nav>
         <ul 
           className={
             menu ? 
-            'z-10 pt-10 px-8 h-screen fixed bg-white' 
+            'z-10 pt-10 px-8 h-screen fixed bg-slate-50 shadow-2xl' 
             : 
             'md:block hidden pl-6 pt-10'
           }
         >
-          <li className='text-slate-900 text-2xl mb-4'>
+          <li className='text-slate-700 text-2xl mb-4'>
             Finance options
             <hr />
           </li>
