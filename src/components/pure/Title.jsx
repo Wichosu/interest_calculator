@@ -6,8 +6,8 @@ import '../../dist/output.css';
  */
 const Title = ({ title }) => {
   return (
-    <div>
-      <p className='my-6 text-6xl text-slate-800 font-normal'>{ title }</p>
+    <div className='md:ml-20 ml-6 my-6'>
+      <p className='md:text-6xl text-4xl text-slate-800'>{ title }</p>
     </div>
   );
 }

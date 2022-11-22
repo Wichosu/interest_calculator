@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
+import Button from '../../components/pure/Button.jsx';
+import Title from '../../components/pure/Title.jsx';
 import '../../dist/output.css';
 
 const formSchema = Yup.object().shape({
@@ -31,6 +33,7 @@ const DebtCapacity = () => {
 
   return (
     <>
+      <Title title={'Debt Capacity'} />
       <Formik
         initialValues={{income: '', expenses: '', percentage: ''}}
         validationSchema={formSchema}
@@ -38,52 +41,31 @@ const DebtCapacity = () => {
       >
         {({errors, touched}) => (
           <Form>
-            <label>
-              <span>Income</span>
-              <Field 
-                name='income'
-                placeholder='12000'
-                type='number'
-              />
-              { errors.income && touched.income ? 
-              (
-                <div>{ errors.income }</div>
-              )
-              :
-              null
-              }
-            </label>
-            <label>
-              <span>Expenses</span>
-              <Field
-                name='expenses'
-                placeholder='8800'
-                type='number'
-              />
-              { errors.expenses && touched.expenses ?
-              (
-                <div>{ errors.expenses }</div>
-              )
-              :
-              null
-              }
-            </label>
-            <label>
-              <span>Percentage</span>
-              <Field
-                name='percentage'
-                placeholder='40'
-                type='number'
-              />
-              { errors.percentage && touched.percentage ? 
-              (
-                <div>{ errors.percentage }</div>
-              )
-              :
-              null
-              }
-            </label>
-            <button>Calculate</button>
+            <CustomField name={'income'} placeholder={'12000'} />
+            { errors.income && touched.income ? 
+            (
+              <CustomError error={errors.income} />
+            )
+            :
+            null
+            }
+            <CustomField name={'expenses'} placeholder={'8000'} />
+            { errors.expenses && touched.expenses ?
+            (
+              <CustomError error={errors.income} />
+            )
+            :
+            null
+            }
+            <CustomField name={'percentage'} placeholder={'40'} />
+            { errors.percentage && touched.percentage ?
+            (
+              <CustomError error={errors.percentage} />
+            )
+            :
+            null
+            }
+            <Button text={'calculate'}/>
           </Form>
         )}
       </Formik>
@@ -94,10 +76,30 @@ const DebtCapacity = () => {
 
 function Capacity({ capacity }) {
   return (
-    <div>
-      <p>Your Debt Capacity</p>
-      <p>{ capacity }</p>
+    <div className='md:ml-20 ml-5 mt-8'>
+      <p className='text-slate-900'>Your Debt Capacity</p>
+      <p className='text-slate-900 text-2xl underline'>{ capacity }</p>
     </div>
+  )
+}
+
+function CustomField({ name, placeholder }) {
+  return (
+    <label className='block md:ml-20 md:mt-10 ml-5 mt-4'>
+      <span className='block mb-1 text-slate-900 capitalize'>{ name }</span>
+      <Field
+        name={name}
+        className='border-b-2 border-slate-200 outline-none'
+        placeholder={placeholder}
+        type='number'
+      />
+    </label>
+  )
+}
+
+function CustomError({ error }) {
+  return (
+    <div className='text-red-600 ml-5'>{ error }</div>
   )
 }
 

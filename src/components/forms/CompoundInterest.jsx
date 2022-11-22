@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
 import Amount from '../pure/Amount';
+import Button from '../pure/Button';
 import { DataSchema } from '../../models/DataSchema.class';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import '../../dist/output.css';
-
-// ? Ideas: Mobile view, Switch lang es or en, multiple calculators
 
 /**
  * Form schema
@@ -133,7 +132,7 @@ const CompoundInterest = () => {
                 null
                 }
               </label>
-              <button className='mt-10 px-4 py-1 rounded bg-lime-400 text-slate-800 hover:shadow' type='submit'>Calculate</button>
+              <Button text={'calculate'} />
             </Form>
           )}
         </Formik>
