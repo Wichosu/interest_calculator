@@ -4,7 +4,7 @@ import '../../dist/output.css';
 
 function CompoundCalc() {
   return (
-    <div className="container md:px-20 px-4">
+    <div>
       <Title title={'Compound Interest Calculator'}/>
       <CompoundInterest />
     </div>
