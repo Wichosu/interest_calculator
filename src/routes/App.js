@@ -3,6 +3,7 @@ import '../dist/output.css';
 import { Routes, Route, Outlet, Link } from 'react-router-dom';
 import CompoundCalc from '../pages/compound/CompundCalc';
 import Home from '../pages/home/Home';
+import DebtCapacity from '../pages/capacity/DebtCapacity';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='/compound-interest' element={<CompoundCalc />} />
+          <Route path='/debt-capacity' element={<DebtCapacity />} />
         </Route>
       </Routes>
     </div>
@@ -27,7 +29,8 @@ function Layout() {
 
   const links = [
     {name: 'Home', link: '/'},
-    {name: 'Compound Interest Calculator', link: '/compound-interest'}
+    {name: 'Compound Interest Calculator', link: '/compound-interest'},
+    {name: 'Debt Capacity', link: '/debt-capacity'}
   ]
 
   function Collapse() {
