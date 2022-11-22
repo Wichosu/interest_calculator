@@ -85,7 +85,7 @@ function Capacity({ capacity }) {
 
 function CustomField({ name, placeholder }) {
   return (
-    <label className='block md:ml-20 md:mt-10 ml-5 mt-4'>
+    <label className='block md:ml-20 md:mt-6 ml-5 mt-4'>
       <span className='block mb-1 text-slate-900 capitalize'>{ name }</span>
       <Field
         name={name}

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
-import Amount from '../pure/Amount';
 import Button from '../pure/Button';
 import { DataSchema } from '../../models/DataSchema.class';
 import { Formik, Form, Field } from 'formik';
@@ -78,60 +77,30 @@ const CompoundInterest = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <label className='block'>
-                <div className='flex'>
-                  <span className='block text-slate-800 mb-2'>Principal</span>
-                  <p className='ml-3 mt-1 rounded h-4 w-4 bg-blue-400' />
-                </div>
-                <Field 
-                  name='principal' 
-                  className='block border border-slate-300 rounded w-40 pl-4 placeholder:text-slate-400' 
-                  placeholder='100'
-                  type='number' 
-                />
-                { errors.principal && touched.principal ? 
-                (
-                <div className='text-red-600'>{ errors.principal }</div>
-                )
-                :
-                null
-                }
-              </label>
-              <label className='block mt-5'>
-                <div className='flex'>
-                  <span className='block text-slate-800 mb-2'>Interest</span>
-                  <p className='ml-3 mt-1 rounded h-4 w-4 bg-yellow-400' />
-                </div>
-                <Field 
-                  name='interest' 
-                  className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
-                  placeholder='10%'
-                  type='number'
-                />
-                { errors.interest && touched.interest ?
-                (
-                <div className='text-red-600'>{ errors.interest }</div>
-                )
-                :
-                null
-                } 
-              </label>
-              <label className='block mt-5'>
-                <span className='block text-slate-800 mb-2'>Time</span>
-                <Field 
-                  name='time' 
-                  className='block border border-slate-300 rounded w-40  pl-4 placeholder:text-slate-400'
-                  placeholder='10'
-                  type='number'
-                />
-                { errors.time && touched.time ?
-                (
-                <div className='text-red-600'>{ errors.time }</div>
-                )
-                :
-                null
-                }
-              </label>
+              <CustomField name='principal' placeholder='100' color='blue' />
+              { errors.principal && touched.principal ? 
+              (
+              <div className='text-red-600'>{ errors.principal }</div>
+              )
+              :
+              null
+              }
+              <CustomField name='interest' placeholder='10' color='yellow' />
+              { errors.interest && touched.interest ?
+              (
+              <div className='text-red-600'>{ errors.interest }</div>
+              )
+              :
+              null
+              } 
+              <CustomField name='time' placeholder='8' />
+              { errors.time && touched.time ?
+              (
+              <div className='text-red-600'>{ errors.time }</div>
+              )
+              :
+              null
+              }
               <Button text={'calculate'} />
             </Form>
           )}
@@ -141,6 +110,37 @@ const CompoundInterest = () => {
       <CompoundGraph data={data} />
     </div>
   );
+}
+
+function CustomField({ name, placeholder, color }) {
+  return (
+    <label className='block ml-6 md:ml-20 mt-4'>
+      <div className='flex'>
+        <span className='block text-slate-800 mb-2 capitalize'>{ name }</span>
+        <p className={`ml-3 mt-1 rounded h-4 w-4 ${color ? `bg-${color}-400` : null}`} />
+      </div>
+      <Field 
+        name={name} 
+        className='border-b-2 border-slate-200 outline-none' 
+        placeholder={placeholder}
+        type='number' 
+      />
+    </label>
+  )
+}
+
+function Amount ({ result }) {
+  return (
+    <div className='md:ml-20 ml-6 mt-10'>
+      <p className='flex'>
+        <strong className='text-slate-800'>Amount</strong>
+        <p className='ml-3 mt-1 rounded h-4 w-4 bg-emerald-400' />
+      </p>
+      <p className='text-slate-900 text-2xl underline'>
+        { result }
+      </p>
+    </div>
+  )
 }
 
 export default CompoundInterest;
