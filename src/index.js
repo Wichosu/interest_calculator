@@ -4,13 +4,16 @@ import './index.css';
 import App from './routes/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import './components/pure/tests/i18nextreact'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <React.Suspense fallback="loading...">
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.Suspense>
   </React.StrictMode>
 );
 

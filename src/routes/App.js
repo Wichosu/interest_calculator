@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../dist/output.css';
 import { Routes, Route, Outlet, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import CompoundCalc from '../pages/compound/CompundCalc';
 import Home from '../pages/home/Home';
 import DebtCapacity from '../pages/capacity/DebtCapacity';
+import i18next from 'i18next';
 
 export default function App() {
   return (
@@ -26,12 +28,18 @@ export default function App() {
 function Layout() {
 
   const [menu, setMenu] = useState(false);
+  const { t } = useTranslation();
 
   const links = [
     {name: 'Home', link: '/'},
     {name: 'Compound Interest Calculator', link: '/compound-interest'},
-    {name: 'Debt Capacity', link: '/debt-capacity'}
-  ]
+    {name: 'Debt Capacity', link: '/debt-capacity'},
+  ];
+
+  const lngs = {
+    en: { nativeName: 'English'},
+    es: { nativeName: 'Español'}
+  };
 
   function Collapse() {
     if(menu) setMenu(!menu);
@@ -46,7 +54,7 @@ function Layout() {
   useEffect(() => {
     window
       .matchMedia("(max-width: 768px)")
-      .addEventListener('change', e => setMenu(e.matches));
+      .addEventListener('change', () => setMenu(false));
   }, []);
 
   return (
@@ -68,8 +76,13 @@ function Layout() {
             'md:block hidden pl-6 pt-10'
           }
         >
+          <li>
+            {Object.keys(lngs).map((lng) => (
+              <button type='submit' key={lng} onClick={() => i18next.changeLanguage(lng)} disabled={i18next.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
+            ))}
+          </li>
           <li className='text-slate-700 text-2xl mb-4'>
-            Finance options
+            {t('nav')}
             <hr />
           </li>
           {

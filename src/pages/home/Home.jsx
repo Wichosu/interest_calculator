@@ -1,12 +1,18 @@
 import React from 'react';
 import '../../dist/output.css';
 import Title from '../../components/pure/Title';
+import SubTitle from '../../components/pure/Subtitle';
 
 const Home = () => {
   return(
-    <div className='container md:px-20 px-4'>
+    <>
       <Title title={'Home'} />
-    </div>
+      <section>
+        <article>
+          <SubTitle title={'What\'s this about?'} />
+        </article>
+      </section>
+    </>
   )
 }
 
