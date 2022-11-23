@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
 import Button from '../pure/Button';
+import CustomError from '../pure/CustomError';
 import { DataSchema } from '../../models/DataSchema.class';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -80,7 +81,7 @@ const CompoundInterest = () => {
               <CustomField name='principal' placeholder='100' color='blue' />
               { errors.principal && touched.principal ? 
               (
-              <div className='text-red-600'>{ errors.principal }</div>
+              <CustomError error={errors.principal} />
               )
               :
               null
@@ -88,7 +89,7 @@ const CompoundInterest = () => {
               <CustomField name='interest' placeholder='10' color='yellow' />
               { errors.interest && touched.interest ?
               (
-              <div className='text-red-600'>{ errors.interest }</div>
+                <CustomError error={errors.interest} />
               )
               :
               null
@@ -96,7 +97,7 @@ const CompoundInterest = () => {
               <CustomField name='time' placeholder='8' />
               { errors.time && touched.time ?
               (
-              <div className='text-red-600'>{ errors.time }</div>
+                <CustomError error={errors.time} />
               )
               :
               null

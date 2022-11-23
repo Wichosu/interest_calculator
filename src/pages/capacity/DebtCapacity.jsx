@@ -3,6 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import Button from '../../components/pure/Button.jsx';
 import Title from '../../components/pure/Title.jsx';
+import CustomError from '../../components/pure/CustomError.jsx';
 import '../../dist/output.css';
 
 const formSchema = Yup.object().shape({
@@ -94,12 +95,6 @@ function CustomField({ name, placeholder }) {
         type='number'
       />
     </label>
-  )
-}
-
-function CustomError({ error }) {
-  return (
-    <div className='text-red-600 ml-5'>{ error }</div>
   )
 }
 
