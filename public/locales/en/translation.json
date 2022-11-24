@@ -1,6 +1,19 @@
 {
-  "nav": "Finance Options",
+  "nav": "Options",
   "home": "Home",
+  "calculate": "calculate",
+
+  "compound-interest": "Compound Interest Calculator",
+  "principal": "principal",
+  "interest": "interest",
+  "time": "time",
+  "amount": "amount",
+
+  "debt-capacity": "Debt Capacity",
+  "income": "income",
+  "expenses": "expenses",
+  "percentage": "percentage",
+
   "sub1": "What's this about?",
   "p1": [
     "This is a progressive project that offers a set of \"financial tools\".",

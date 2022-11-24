@@ -31,9 +31,9 @@ function Layout() {
   const { t } = useTranslation();
 
   const links = [
-    {name: 'Home', link: '/'},
-    {name: 'Compound Interest Calculator', link: '/compound-interest'},
-    {name: 'Debt Capacity', link: '/debt-capacity'},
+    {name: t('home'), link: '/'},
+    {name: t('compound-interest'), link: '/compound-interest'},
+    {name: t('debt-capacity'), link: '/debt-capacity'},
   ];
 
   const lngs = {

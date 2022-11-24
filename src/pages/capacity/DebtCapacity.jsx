@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Button from '../../components/pure/Button.jsx';
 import Title from '../../components/pure/Title.jsx';
 import CustomError from '../../components/pure/CustomError.jsx';
+import { useTranslation } from 'react-i18next';
 import '../../dist/output.css';
 
 const formSchema = Yup.object().shape({
@@ -22,6 +23,8 @@ const formSchema = Yup.object().shape({
 
 const DebtCapacity = () => {
 
+  const { t } = useTranslation();
+
   const [capacity, setCapacity] = useState(0);
 
   function getCapacity(values) {
@@ -34,7 +37,7 @@ const DebtCapacity = () => {
 
   return (
     <>
-      <Title title={'Debt Capacity'} />
+      <Title title={t('debt-capacity')} />
       <Formik
         initialValues={{income: '', expenses: '', percentage: ''}}
         validationSchema={formSchema}
