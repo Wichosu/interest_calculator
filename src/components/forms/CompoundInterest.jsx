@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CompoundGraph from '../graph/CompoundGraph';
 import Button from '../pure/Button';
 import CustomError from '../pure/CustomError';
+import { useTranslation } from 'react-i18next';
 import { DataSchema } from '../../models/DataSchema.class';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -114,10 +115,13 @@ const CompoundInterest = () => {
 }
 
 function CustomField({ name, placeholder, color }) {
+
+  const { t } = useTranslation();
+
   return (
     <label className='block ml-6 md:ml-20 mt-4'>
       <div className='flex'>
-        <span className='block text-slate-800 mb-2 capitalize'>{ name }</span>
+        <span className='block text-slate-800 mb-2 capitalize'>{ t(name) }</span>
         <p className={`ml-3 mt-1 rounded h-4 w-4 ${color ? `bg-${color}-400` : null}`} />
       </div>
       <Field 
@@ -131,10 +135,13 @@ function CustomField({ name, placeholder, color }) {
 }
 
 function Amount ({ result }) {
+
+  const { t } = useTranslation();
+
   return (
     <div className='md:ml-20 ml-6 mt-10'>
       <p className='flex'>
-        <strong className='text-slate-800'>Amount</strong>
+        <strong className='text-slate-800 capitalize'>{ t('amount') }</strong>
         <p className='ml-3 mt-1 rounded h-4 w-4 bg-emerald-400' />
       </p>
       <p className='text-slate-900 text-2xl underline'>

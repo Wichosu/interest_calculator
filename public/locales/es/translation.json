@@ -1,6 +1,19 @@
 {
-  "nav": "Opciones Finacieras",
+  "nav": "Opciones",
   "home": "Inicio",
+  "calculate": "calcular",
+
+  "compound-interest": "Calculadora de Interes Compuesto",
+  "principal": "capital inicial",
+  "interest": "interés",
+  "time": "tiempo",
+  "amount": "total",
+  
+  "debt-capacity": "Capacidad de Deuda",
+  "income": "ingresos",
+  "expenses": "gastos",
+  "percentage": "porcentaje",
+
   "sub1": "¿De que va el proyecto?",
   "p1": [
     "Es un proyecto progresivo que ofrece un set de \"herramientas financieras\".",
