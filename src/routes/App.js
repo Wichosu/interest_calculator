@@ -76,9 +76,24 @@ function Layout() {
             'md:block hidden pl-6 pt-10'
           }
         >
-          <li>
+          <li className='flex place-content-evenly mb-4'>
             {Object.keys(lngs).map((lng) => (
-              <button type='submit' key={lng} onClick={() => i18next.changeLanguage(lng)} disabled={i18next.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
+              <button 
+                type='submit' 
+                key={lng} 
+                onClick={() => i18next.changeLanguage(lng)} 
+                disabled={i18next.resolvedLanguage === lng}
+                className={`border rounded px-2 py-1
+                  ${
+                    i18next.resolvedLanguage === lng ?
+                    'text-slate-300 border-slate-200' 
+                    : 
+                    'text-slate-500 border-slate-400'
+                  }
+                `}
+              >
+                {lngs[lng].nativeName}
+              </button>
             ))}
           </li>
           <li className='text-slate-700 text-2xl mb-4'>
