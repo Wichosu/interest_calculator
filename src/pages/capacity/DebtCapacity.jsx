@@ -79,18 +79,24 @@ const DebtCapacity = () => {
 }
 
 function Capacity({ capacity }) {
+
+  const { t } = useTranslation();
+
   return (
     <div className='md:ml-20 ml-5 mt-8'>
-      <p className='text-slate-900'>Your Debt Capacity</p>
+      <p className='text-slate-900'>{ t('debt-capacity') }</p>
       <p className='text-slate-900 text-2xl underline'>{ capacity }</p>
     </div>
   )
 }
 
 function CustomField({ name, placeholder }) {
+
+  const { t } = useTranslation();
+
   return (
     <label className='block md:ml-20 md:mt-6 ml-5 mt-4'>
-      <span className='block mb-1 text-slate-900 capitalize'>{ name }</span>
+      <span className='block mb-1 text-slate-900 capitalize'>{ t(name) }</span>
       <Field
         name={name}
         className='border-b-2 border-slate-200 outline-none'

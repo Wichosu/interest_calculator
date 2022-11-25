@@ -67,34 +67,53 @@ function Layout() {
           <p className='mx-auto text-2xl text-slate-700'>Finance App</p>
         </div>
       </div>
-      <nav>
-        <ul 
-          className={
-            menu ? 
-            'z-10 pt-10 px-8 h-screen fixed bg-slate-50 shadow-2xl' 
-            : 
-            'md:block hidden pl-6 pt-10'
-          }
-        >
-          <li>
-            {Object.keys(lngs).map((lng) => (
-              <button type='submit' key={lng} onClick={() => i18next.changeLanguage(lng)} disabled={i18next.resolvedLanguage === lng}>{lngs[lng].nativeName}</button>
-            ))}
-          </li>
-          <li className='text-slate-700 text-2xl mb-4'>
-            {t('nav')}
-            <hr />
-          </li>
-          {
-            links.map((link, index) => (
-              <li key={index} className='text-blue-500 mb-4 hover:underline'>
-                <Link onClick={SwitchMenu} to={link.link}>{link.name}</Link>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <hr className='border-l-2 border-slate-200 md:h-screen md:block hidden ml-4'/>
+      <div className='border-r w-1/5'>
+        <nav className='sticky top-0'>
+          <ul 
+            className={
+              menu ? 
+              'w-3/4 z-10 pt-10 px-8 h-screen fixed bg-slate-50 shadow-2xl animate-slide' 
+              : 
+              'md:block hidden pl-6 pt-10 mr-4'
+            }
+          >
+            <li className='flex place-content-evenly mb-4'>
+              {Object.keys(lngs).map((lng) => (
+                <button 
+                  type='submit' 
+                  key={lng} 
+                  onClick={() => i18next.changeLanguage(lng)} 
+                  disabled={i18next.resolvedLanguage === lng}
+                  className={`border rounded px-2 py-1
+                    ${
+                      i18next.resolvedLanguage === lng ?
+                      'text-slate-300 border-slate-200' 
+                      : 
+                      'text-slate-500 border-slate-400'
+                    }
+                  `}
+                >
+                  {lngs[lng].nativeName}
+                </button>
+              ))}
+            </li>
+            <li className='text-slate-700 text-2xl mb-4'>
+              {t('nav')}
+              <hr />
+            </li>
+            {
+              links.map((link, index) => (
+                <li key={index} className='text-blue-500 mb-4 hover:underline'>
+                  <Link onClick={SwitchMenu} to={link.link}>{link.name}</Link>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <hr className='border-l-2 border-slate-200 md:h-screen md:sticky hidden ml-4'/>
+      </div>
       <div onClick={Collapse}>
         <Outlet />
       </div>
