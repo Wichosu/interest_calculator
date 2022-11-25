@@ -71,7 +71,7 @@ function Layout() {
         <ul 
           className={
             menu ? 
-            'z-10 pt-10 px-8 h-screen fixed bg-slate-50 shadow-2xl' 
+            'w-3/4 z-10 pt-10 px-8 h-screen fixed bg-slate-50 shadow-2xl animate-slide' 
             : 
             'md:block hidden pl-6 pt-10'
           }
