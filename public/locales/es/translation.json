@@ -1,0 +1,39 @@
+{
+  "nav": "Opciones",
+  "home": "Inicio",
+  "calculate": "calcular",
+
+  "compound-interest": "Calculadora de Interes Compuesto",
+  "principal": "capital inicial",
+  "interest": "interés",
+  "time": "tiempo",
+  "amount": "total",
+  
+  "debt-capacity": "Capacidad de Deuda",
+  "income": "ingresos",
+  "expenses": "gastos",
+  "percentage": "porcentaje",
+
+  "sub1": "¿De que va el proyecto?",
+  "p1": [
+    "Es un proyecto progresivo que ofrece un set de \"herramientas financieras\".",
+    "Su proposito es ilustrar algunas técnicas financieras para tener una mejor comprensión,",
+    "principalmente para la gente que empieza a aprender sobre algunos términos y conceptos",
+    "de economía."
+  ],
+  "sub2": "¿Qué herramientas ofrece?",
+  "p2": [
+    "Por el momento solo hay dos opciones. Un simulador de interés compuesto y",
+    "un simulador de capacidad de deuda. En el futuro puede que añada más herramientas,",
+    "pero no es seguro."
+  ],
+  "sub3": "¿Cómo lo uso?",
+  "p3": [
+    "Utiliza la barra de navegación del lado izquierdo para desplazarte entre las opciones,",
+    "Si estás en tu teléfono abre el menú presionando el icono de las 3 rayas en",
+    "la parte superior izquierda. Una vez que la barra se haya mostrado, has clic en",
+    "tu herramienta de preferencia y un formulario se mostrara en pantalla.",
+    "Asegúrate de llenar los espacios en blanco y todo debería de funcionar.",
+    "Tomate la libertad de experimentar todo lo que quieras."
+  ]
+}
