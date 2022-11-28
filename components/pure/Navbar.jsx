@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { CgMenu } from 'react-icons/cg';
 
-function Navbar({ menu }) {
+function Navbar() {
 
   const { t } = useTranslation()
   const router = useRouter();
+  const [menu, setMenu] = useState(false);
+
+  useEffect(() => {
+    window
+      .matchMedia("(max-width: 768px)")
+      .addEventListener('change', () => setMenu(false))
+  }, []);
 
   const lngs = {
     en: { nativeName: 'English'},
@@ -20,20 +28,27 @@ function Navbar({ menu }) {
   ];
 
   return (
-    <div>
+    <>
+      <div className='sticky top-0'>
+        <div className='flex items-center bg-slate-50 py-2'>
+          <CgMenu 
+            onClick={() => setMenu(!menu)}
+            className='ml-6 text-2xl text-slate-900'
+          />
+          <div className='mx-auto text-xl text-slate-900'>Finance App</div>
+        </div>
+      </div>
       <nav 
         className={ menu ?
-          'fixed bg-slate-200 h-screen'
+          'fixed w-3/4 h-screen bg-slate-50 pt-4'
           :
           'hidden'}
       >
-        <ul
-          className='mt-8'
-        >
-          <li>
+        <ul>
+          <li className='flex place-content-evenly text-slate-600'>
             {
               Object.keys(lngs).map((lng) => {
-                const { pathname, query, asPath } = router;
+                const { pathname, query, asPath, locale } = router;
                 return (
                   <Link
                     key={lng}
@@ -42,7 +57,18 @@ function Navbar({ menu }) {
                     locale={lng}
                     legacyBehavior
                   >
-                    {lngs[lng].nativeName}
+                    <button 
+                      className={`border rounded py-0 px-2
+                        ${locale === lng ? 
+                          `text-slate-300 border-slate-200 cursor-default` 
+                          : 
+                          `border-slate-400 cursor-pointer`
+                        }
+                      `}
+                      disabled={locale === lng}
+                    >
+                      {lngs[lng].nativeName}
+                    </button>
                   </Link>
                 )
               })
@@ -51,13 +77,16 @@ function Navbar({ menu }) {
           {
             links.map((link, index) => (
               <li key={index}>
-                <Link href={link.href}>{link.name}</Link>
+                <Link 
+                  href={link.href}
+                  onClick={() => setMenu(!menu)}
+                >{link.name}</Link>
               </li>
             ))
           }
         </ul>
       </nav>
-    </div>
+    </>
   )
 }
 

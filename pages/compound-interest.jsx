@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import CompoundGraph from '../components/graph/CompoundGraph';
 import Button from '../components/pure/Button';
 import CustomError from '../components/pure/CustomError';
-import Navbar from '../components/pure/Navbar';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { DataSchema } from '../models/DataSchema.class';
@@ -74,7 +73,6 @@ const CompoundInterest = () => {
 
   return (
     <>
-      <Navbar />
       <Title title={t('compound-interest')} />
       <div className='md:flex'>
         <div>

@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import Button from '../components/pure/Button.jsx';
 import Title from '../components/pure/Title.jsx';
 import CustomError from '../components/pure/CustomError.jsx';
-import Navbar from '../components/pure/Navbar.jsx';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
@@ -38,7 +37,6 @@ const DebtCapacity = () => {
 
   return (
     <>
-      <Navbar />
       <Title title={t('debt-capacity')} />
       <Formik
         initialValues={{income: '', expenses: '', percentage: ''}}
