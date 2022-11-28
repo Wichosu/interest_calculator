@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-function Navbar() {
+function Navbar({ menu }) {
 
   const { t } = useTranslation()
   const router = useRouter();
@@ -20,35 +20,44 @@ function Navbar() {
   ];
 
   return (
-    <>
-      <ul>
-        <li>
+    <div>
+      <nav 
+        className={ menu ?
+          'fixed bg-slate-200 h-screen'
+          :
+          'hidden'}
+      >
+        <ul
+          className='mt-8'
+        >
+          <li>
+            {
+              Object.keys(lngs).map((lng) => {
+                const { pathname, query, asPath } = router;
+                return (
+                  <Link
+                    key={lng}
+                    href={{pathname, query}}
+                    as={asPath}
+                    locale={lng}
+                    legacyBehavior
+                  >
+                    {lngs[lng].nativeName}
+                  </Link>
+                )
+              })
+            }
+          </li>
           {
-            Object.keys(lngs).map((lng) => {
-              const { pathname, query, asPath } = router;
-              return (
-                <Link
-                  key={lng}
-                  href={{pathname, query}}
-                  as={asPath}
-                  locale={lng}
-                  legacyBehavior
-                >
-                  {lngs[lng].nativeName}
-                </Link>
-              )
-            })
+            links.map((link, index) => (
+              <li key={index}>
+                <Link href={link.href}>{link.name}</Link>
+              </li>
+            ))
           }
-        </li>
-        {
-          links.map((link, index) => (
-            <li key={index}>
-              <Link href={link.href}>{link.name}</Link>
-            </li>
-          ))
-        }
-      </ul>
-    </>
+        </ul>
+      </nav>
+    </div>
   )
 }
 
