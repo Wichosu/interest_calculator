@@ -3,10 +3,12 @@ import CompoundGraph from '../components/graph/CompoundGraph';
 import Button from '../components/pure/Button';
 import CustomError from '../components/pure/CustomError';
 import Navbar from '../components/pure/Navbar';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { DataSchema } from '../models/DataSchema.class';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Title from '../components/pure/Title';
 
 /**
  * Form schema
@@ -33,6 +35,7 @@ const CompoundInterest = () => {
 
   const [result, setResult] = useState(0);
   const [data, setData] = useState([{}]);
+  const { t } = useTranslation();
 
   /**
    *Calculates the final amount 
@@ -72,6 +75,7 @@ const CompoundInterest = () => {
   return (
     <>
       <Navbar />
+      <Title title={t('compound-interest')} />
       <div className='md:flex'>
         <div>
           <Formik 
@@ -155,3 +159,11 @@ function Amount ({ result }) {
 }
 
 export default CompoundInterest;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'footer'])),
+    },
+  };
+}

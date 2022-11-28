@@ -5,7 +5,8 @@ import Button from '../components/pure/Button.jsx';
 import Title from '../components/pure/Title.jsx';
 import CustomError from '../components/pure/CustomError.jsx';
 import Navbar from '../components/pure/Navbar.jsx';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
 const formSchema = Yup.object().shape({
   income: Yup.number()
@@ -109,3 +110,11 @@ function CustomField({ name, placeholder }) {
 }
 
 export default DebtCapacity;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'footer'])),
+    },
+  };
+}
