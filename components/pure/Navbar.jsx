@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { CgMenu } from 'react-icons/cg';
+import { CgMenu, CgClose } from 'react-icons/cg';
 
 function Navbar() {
 
@@ -37,18 +37,30 @@ function Navbar() {
     <>
       <div className='md:hidden sticky top-0'>
         <div className='flex items-center bg-slate-50 py-2'>
-          <CgMenu 
-            onClick={switchMenu}
-            className='ml-6 text-2xl text-slate-900'
-          />
+          {
+            menu ? 
+            (
+              <CgClose 
+                onClick={switchMenu}
+                className='ml-6 text-2xl text-slate-900'
+              />
+            )
+            :
+            (
+              <CgMenu 
+                onClick={switchMenu}
+                className='ml-6 text-2xl text-slate-900'
+              />
+            )
+          }
           <div className='mx-auto text-xl text-slate-900'>Finance App</div>
         </div>
       </div>
-      <div className='md:border-r-2 md:w-1/5 md:px-4'>
+      <div className='md:border-r md:w-1/5 md:px-4'>
         <div className='md:sticky md:top-0'>
           <nav 
             className={ menu ?
-              'fixed w-3/4 h-screen bg-slate-50 pt-4 px-6'
+              'fixed w-3/4 h-screen bg-slate-50 shadow-2xl pt-4 px-6 animate-slide'
               :
               'md:block hidden'}
           >
