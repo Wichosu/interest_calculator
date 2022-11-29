@@ -1,12 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx}"],
+  content: [
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+  ],
   theme: {
     extend: {
       keyframes: {
         slide: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0)' },
+          '0%': { transform: 'translateX(-100%)'},
+          '100%': { transform: 'translateX(0%)'},
         },
       },
       animation: {
