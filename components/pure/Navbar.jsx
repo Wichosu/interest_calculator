@@ -29,7 +29,7 @@ function Navbar() {
 
   return (
     <>
-      <div className='sticky top-0'>
+      <div className='md:hidden sticky top-0'>
         <div className='flex items-center bg-slate-50 py-2'>
           <CgMenu 
             onClick={() => setMenu(!menu)}
@@ -40,9 +40,9 @@ function Navbar() {
       </div>
       <nav 
         className={ menu ?
-          'fixed w-3/4 h-screen bg-slate-50 pt-4'
+          'fixed w-3/4 h-screen bg-slate-50 pt-4 px-6'
           :
-          'hidden'}
+          'md:block hidden'}
       >
         <ul>
           <li className='flex place-content-evenly text-slate-600'>
@@ -74,15 +74,37 @@ function Navbar() {
               })
             }
           </li>
+          <li className='text-slate-700 text-2xl my-4'>
+            Options
+            <hr />
+          </li>
           {
-            links.map((link, index) => (
-              <li key={index}>
-                <Link 
-                  href={link.href}
-                  onClick={() => setMenu(!menu)}
-                >{link.name}</Link>
-              </li>
-            ))
+            links.map((link, index) => {
+              const { pathname } = router;
+              return (
+                <li 
+                  key={index}
+                  className='text-blue-500 mb-4'
+                >
+                  <Link 
+                    href={link.href}
+                    legacyBehavior
+                  >
+                    <button
+                      className={link.href === pathname ?
+                        'text-slate-300'
+                        :
+                        'hover:underline' 
+                      }
+                      onClick={() => setMenu(!menu)}
+                      disabled={link.href === pathname}
+                    >
+                      {link.name}
+                    </button>
+                  </Link>
+                </li>
+              )
+            })
           }
         </ul>
       </nav>
