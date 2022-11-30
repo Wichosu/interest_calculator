@@ -30,7 +30,8 @@ function Navbar() {
   let links = [
     {name: t('home'), href: '/'},
     {name: t('compound-interest'), href: '/compound-interest'},
-    {name: t('debt-capacity'), href: '/debt-capacity'}
+    {name: t('debt-capacity'), href: '/debt-capacity'},
+    {name: 'Interest rate', href: '/interest-rate'}
   ];
 
   return (
