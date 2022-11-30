@@ -1,8 +1,8 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Formik, Field, Form } from 'formik';
-import { useTranslation } from 'next-i18next';
+import { Formik, Form } from 'formik';
 import Title from '../components/pure/Title';
+import CustomField from '../components/pure/CustomField';
 import * as Yup from 'yup';
 
 const formSchema = Yup.object().shape({
@@ -37,23 +37,6 @@ const InterestRate = () => {
       </Formik>
     </>
   );
-}
-
-function CustomField({ name, placeholder }) {
-
-  const { t } = useTranslation();
-
-  return (
-    <label className='block md:ml-20 md:mt-6 ml-5 mt-4'>
-      <span className='block mb-1 text-slate-900 capitalize'>{ t(name) }</span>
-      <Field
-        name={name}
-        className='border-b-2 border-slate-200 outline-none'
-        placeholder={placeholder}
-        type='number'
-      />
-    </label>
-  )
 }
 
 export default InterestRate;
