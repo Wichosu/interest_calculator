@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import Button from '../components/pure/Button.jsx';
 import Title from '../components/pure/Title.jsx';
 import CustomError from '../components/pure/CustomError.jsx';
+import Result from '../components/pure/Result.jsx';
+import CustomField from '../components/pure/CustomField.jsx';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
@@ -23,8 +25,6 @@ const formSchema = Yup.object().shape({
 
 const DebtCapacity = () => {
 
-  const { t } = useTranslation();
-
   const [capacity, setCapacity] = useState(0);
 
   function getCapacity(values) {
@@ -37,7 +37,7 @@ const DebtCapacity = () => {
 
   return (
     <>
-      <Title title={t('debt-capacity')} />
+      <Title title={'debt-capacity.title'} />
       <Formik
         initialValues={{income: '', expenses: '', percentage: ''}}
         validationSchema={formSchema}
@@ -45,7 +45,7 @@ const DebtCapacity = () => {
       >
         {({errors, touched}) => (
           <Form>
-            <CustomField name={'income'} placeholder={'12000'} />
+            <CustomField name={'income'} translationFrom={'debt-capacity'} placeholder={'12000'} />
             { errors.income && touched.income ? 
             (
               <CustomError error={errors.income} />
@@ -53,7 +53,7 @@ const DebtCapacity = () => {
             :
             null
             }
-            <CustomField name={'expenses'} placeholder={'8000'} />
+            <CustomField name={'expenses'} translationFrom={'debt-capacity'} placeholder={'8000'} />
             { errors.expenses && touched.expenses ?
             (
               <CustomError error={errors.income} />
@@ -61,7 +61,7 @@ const DebtCapacity = () => {
             :
             null
             }
-            <CustomField name={'percentage'} placeholder={'40'} />
+            <CustomField name={'percentage'} translationFrom={'debt-capacity'} placeholder={'40'} />
             { errors.percentage && touched.percentage ?
             (
               <CustomError error={errors.percentage} />
@@ -69,42 +69,13 @@ const DebtCapacity = () => {
             :
             null
             }
-            <Button text={'calculate'}/>
+            <Button text={'btn.calculate'}/>
           </Form>
         )}
       </Formik>
-      <Capacity capacity={capacity} />
+      <Result result={capacity} text='debt-capacity.title' />
     </>
   );
-}
-
-function Capacity({ capacity }) {
-
-  const { t } = useTranslation();
-
-  return (
-    <div className='md:ml-20 ml-5 mt-8'>
-      <p className='text-slate-900'>{ t('debt-capacity') }</p>
-      <p className='text-slate-900 text-2xl underline'>{ capacity }</p>
-    </div>
-  )
-}
-
-function CustomField({ name, placeholder }) {
-
-  const { t } = useTranslation();
-
-  return (
-    <label className='block md:ml-20 md:mt-6 ml-5 mt-4'>
-      <span className='block mb-1 text-slate-900 capitalize'>{ t(name) }</span>
-      <Field
-        name={name}
-        className='border-b-2 border-slate-200 outline-none'
-        placeholder={placeholder}
-        type='number'
-      />
-    </label>
-  )
 }
 
 export default DebtCapacity;
