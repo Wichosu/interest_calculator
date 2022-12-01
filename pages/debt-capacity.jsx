@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import Button from '../components/pure/Button.jsx';
 import Title from '../components/pure/Title.jsx';
 import CustomError from '../components/pure/CustomError.jsx';
+import Result from '../components/pure/Result.jsx';
+import CustomField from '../components/pure/CustomField.jsx';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations.js';
 
@@ -73,38 +75,9 @@ const DebtCapacity = () => {
           </Form>
         )}
       </Formik>
-      <Capacity capacity={capacity} />
+      <Result capacity={capacity} text='debt-capacity' />
     </>
   );
-}
-
-function Capacity({ capacity }) {
-
-  const { t } = useTranslation();
-
-  return (
-    <div className='md:ml-20 ml-5 mt-8'>
-      <p className='text-slate-900'>{ t('debt-capacity') }</p>
-      <p className='text-slate-900 text-2xl underline'>{ capacity }</p>
-    </div>
-  )
-}
-
-function CustomField({ name, placeholder }) {
-
-  const { t } = useTranslation();
-
-  return (
-    <label className='block md:ml-20 md:mt-6 ml-5 mt-4'>
-      <span className='block mb-1 text-slate-900 capitalize'>{ t(name) }</span>
-      <Field
-        name={name}
-        className='border-b-2 border-slate-200 outline-none'
-        placeholder={placeholder}
-        type='number'
-      />
-    </label>
-  )
 }
 
 export default DebtCapacity;

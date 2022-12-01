@@ -1,9 +1,12 @@
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Formik, Form } from 'formik';
+import { useTranslation } from 'next-i18next';
+import * as Yup from 'yup';
 import Title from '../components/pure/Title';
 import CustomField from '../components/pure/CustomField';
-import * as Yup from 'yup';
+import CustomError from '../components/pure/CustomError';
+import Button from '../components/pure/Button';
 
 const formSchema = Yup.object().shape({
   amount: Yup.number()
@@ -31,12 +34,48 @@ const InterestRate = () => {
         {({errors, touched}) => (
           <Form>
             <CustomField name={'amount'} placeholder='100' />
+            { errors.amount && touched.amount ? 
+            (
+              <CustomError error={errors.amount} />
+            )
+            :
+            null
+            }
+            <CustomField name={'principal'} placeholder='80' />
+            { errors.principal && touched.principal ? 
+            (
+              <CustomError error={errors.principal} />
+            )
+            :
+            null
+            }
+            <CustomField name={'time'} placeholder='1' />
+            { errors.time && touched.time ? 
+            (
+              <CustomError error={errors.time} />
+            )
+            :
+            null
+            }
+            <Button text={'Calculate'} />
           </Form>
         )}
-
       </Formik>
+      <Capacity capacity={2}/>
     </>
   );
+}
+
+function Capacity({ capacity }) {
+
+  const { t } = useTranslation();
+
+  return (
+    <div className='md:ml-20 ml-5 mt-8'>
+      <p className='text-slate-900'>{ t('debt-capacity') }</p>
+      <p className='text-slate-900 text-2xl underline'>{ capacity }</p>
+    </div>
+  )
 }
 
 export default InterestRate;
