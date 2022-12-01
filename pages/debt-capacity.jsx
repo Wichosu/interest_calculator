@@ -25,8 +25,6 @@ const formSchema = Yup.object().shape({
 
 const DebtCapacity = () => {
 
-  const { t } = useTranslation();
-
   const [capacity, setCapacity] = useState(0);
 
   function getCapacity(values) {
@@ -39,7 +37,7 @@ const DebtCapacity = () => {
 
   return (
     <>
-      <Title title={t('debt-capacity')} />
+      <Title title={'debt-capacity.title'} />
       <Formik
         initialValues={{income: '', expenses: '', percentage: ''}}
         validationSchema={formSchema}
@@ -47,7 +45,7 @@ const DebtCapacity = () => {
       >
         {({errors, touched}) => (
           <Form>
-            <CustomField name={'income'} placeholder={'12000'} />
+            <CustomField name={'income'} translationFrom={'debt-capacity'} placeholder={'12000'} />
             { errors.income && touched.income ? 
             (
               <CustomError error={errors.income} />
@@ -55,7 +53,7 @@ const DebtCapacity = () => {
             :
             null
             }
-            <CustomField name={'expenses'} placeholder={'8000'} />
+            <CustomField name={'expenses'} translationFrom={'debt-capacity'} placeholder={'8000'} />
             { errors.expenses && touched.expenses ?
             (
               <CustomError error={errors.income} />
@@ -63,7 +61,7 @@ const DebtCapacity = () => {
             :
             null
             }
-            <CustomField name={'percentage'} placeholder={'40'} />
+            <CustomField name={'percentage'} translationFrom={'debt-capacity'} placeholder={'40'} />
             { errors.percentage && touched.percentage ?
             (
               <CustomError error={errors.percentage} />
@@ -71,11 +69,11 @@ const DebtCapacity = () => {
             :
             null
             }
-            <Button text={'calculate'}/>
+            <Button text={'btn.calculate'}/>
           </Form>
         )}
       </Formik>
-      <Result result={capacity} text='debt-capacity' />
+      <Result result={capacity} text='debt-capacity.title' />
     </>
   );
 }

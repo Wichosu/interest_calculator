@@ -28,10 +28,10 @@ function Navbar() {
   }
 
   let links = [
-    {name: t('home'), href: '/'},
-    {name: t('compound-interest'), href: '/compound-interest'},
-    {name: t('debt-capacity'), href: '/debt-capacity'},
-    {name: 'Interest rate', href: '/interest-rate'}
+    {name: t('nav.home'), href: '/'},
+    {name: t('nav.compound-interest'), href: '/compound-interest'},
+    {name: t('nav.debt-capacity'), href: '/debt-capacity'},
+    {name: t('nav.interest-rate'), href: '/interest-rate'}
   ];
 
   return (
@@ -96,7 +96,7 @@ function Navbar() {
                 }
               </li>
               <li className='text-slate-700 text-2xl my-4'>
-                { t('nav') }
+                { t('nav.title') }
                 <hr />
               </li>
               {

@@ -34,7 +34,6 @@ const CompoundInterest = () => {
 
   const [result, setResult] = useState(0);
   const [data, setData] = useState([{}]);
-  const { t } = useTranslation();
 
   /**
    *Calculates the final amount 
@@ -73,7 +72,7 @@ const CompoundInterest = () => {
 
   return (
     <>
-      <Title title={t('compound-interest')} />
+      <Title title={'compound-interest.title'} />
       <div className='md:flex'>
         <div>
           <Formik 
@@ -107,7 +106,7 @@ const CompoundInterest = () => {
                 :
                 null
                 }
-                <Button text={'calculate'} />
+                <Button text={'btn.calculate'} />
               </Form>
             )}
           </Formik>
@@ -126,7 +125,7 @@ function CustomField({ name, placeholder, color }) {
   return (
     <label className='block ml-6 md:ml-20 mt-4'>
       <div className='flex'>
-        <span className='block text-slate-800 mb-2 capitalize'>{ t(name) }</span>
+        <span className='block text-slate-800 mb-2 capitalize'>{ t(`compound-interest.${name}`) }</span>
         <p className={`ml-3 mt-1 rounded h-4 w-4 ${color ? `bg-${color}-400` : null}`} />
       </div>
       <Field 
@@ -146,7 +145,7 @@ function Amount ({ result }) {
   return (
     <div className='md:ml-20 ml-6 mt-10'>
       <p className='flex'>
-        <strong className='text-slate-800 capitalize'>{ t('amount') }</strong>
+        <strong className='text-slate-800 capitalize'>{ t('compound-interest.amount') }</strong>
         <p className='ml-3 mt-1 rounded h-4 w-4 bg-emerald-400' />
       </p>
       <p className='text-slate-900 text-2xl underline'>

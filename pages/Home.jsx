@@ -11,15 +11,15 @@ const Home = () => {
 
   return(
     <div>
-      <Title title={t('home')} />
+      <Title title={t('home.title')} />
       <section>
         <article>
-          <SubTitle title={t('sub1')} />
-          <Paragraph text={t('p1', { joinArrays: ' '})} />
-          <SubTitle title={t('sub2')} />
-          <Paragraph text={t('p2', { joinArrays: ' '})} />
-          <SubTitle title={t('sub3')} />
-          <Paragraph text={t('p3', { joinArrays: ' '})} />
+          <SubTitle title={t('home.sub1')} />
+          <Paragraph text={t('home.p1', { joinArrays: ' '})} />
+          <SubTitle title={t('home.sub2')} />
+          <Paragraph text={t('home.p2', { joinArrays: ' '})} />
+          <SubTitle title={t('home.sub3')} />
+          <Paragraph text={t('home.p3', { joinArrays: ' '})} />
         </article>
       </section>
     </div>
