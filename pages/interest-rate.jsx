@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Formik, Form } from 'formik';
-import { useTranslation } from 'next-i18next';
 import * as Yup from 'yup';
 import Title from '../components/pure/Title';
 import CustomField from '../components/pure/CustomField';
 import CustomError from '../components/pure/CustomError';
+import Result from '../components/pure/Result';
 import Button from '../components/pure/Button';
 
 const formSchema = Yup.object().shape({
@@ -23,13 +23,24 @@ const formSchema = Yup.object().shape({
 //Formula: Interest = (Amount / Principal) ^ (1 / Time) - 1
 
 const InterestRate = () => {
+  
+  const [interest, setInterest] = useState();
+
+  const getInterest = (values) => {
+    const amount = Number(values.amount);
+    const principal = Number(values.principal);
+    const time = Number(values.time);
+    const interest = (Math.pow((amount / principal), (1 / time)) - 1) * 100;
+    setInterest(interest);
+  }
+
   return (
     <>
       <Title title={'Interest Rate'} />
       <Formik
         initialValues={{amount: '', principal: '', time: ''}}
         validationSchema={formSchema}
-        onSubmit={(values) => alert(JSON.stringify(values))}
+        onSubmit={(values) => getInterest(values)}
       >
         {({errors, touched}) => (
           <Form>
@@ -57,25 +68,13 @@ const InterestRate = () => {
             :
             null
             }
-            <Button text={'Calculate'} />
+            <Button text={'calculate'} />
           </Form>
         )}
       </Formik>
-      <Capacity capacity={2}/>
+      <Result result={`${interest}%`}  text='Interest Rate'/>
     </>
   );
-}
-
-function Capacity({ capacity }) {
-
-  const { t } = useTranslation();
-
-  return (
-    <div className='md:ml-20 ml-5 mt-8'>
-      <p className='text-slate-900'>{ t('debt-capacity') }</p>
-      <p className='text-slate-900 text-2xl underline'>{ capacity }</p>
-    </div>
-  )
 }
 
 export default InterestRate;

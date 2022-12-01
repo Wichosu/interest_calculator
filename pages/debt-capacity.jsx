@@ -75,7 +75,7 @@ const DebtCapacity = () => {
           </Form>
         )}
       </Formik>
-      <Result capacity={capacity} text='debt-capacity' />
+      <Result result={capacity} text='debt-capacity' />
     </>
   );
 }
