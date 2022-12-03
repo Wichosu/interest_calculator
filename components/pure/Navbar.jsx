@@ -31,7 +31,8 @@ function Navbar() {
     {name: t('nav.home'), href: '/'},
     {name: t('nav.compound-interest'), href: '/compound-interest'},
     {name: t('nav.debt-capacity'), href: '/debt-capacity'},
-    {name: t('nav.interest-rate'), href: '/interest-rate'}
+    {name: t('nav.interest-rate'), href: '/interest-rate'},
+    {name: t('nav.debt-payment'), href: '/debt-payment'}
   ];
 
   return (

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Formik, Form } from 'formik';
-import { useTranslation } from 'next-i18next';
 import * as Yup from 'yup';
 import Title from '../components/pure/Title';
 import CustomField from '../components/pure/CustomField';
@@ -28,10 +27,10 @@ const InterestRate = () => {
   const [interest, setInterest] = useState(0);
 
   const getInterest = (values) => {
-    const amount = Number(values.amount);
-    const principal = Number(values.principal);
+    const cash = Number(values.cash);
+    const credit = Number(values.credit);
     const time = Number(values.time);
-    const interest = (Math.pow((amount / principal), (1 / time)) - 1) * 100;
+    const interest = (Math.pow((credit / cash), (1 / time)) - 1) * 100;
     setInterest(interest);
   }
 
@@ -46,17 +45,17 @@ const InterestRate = () => {
         {({errors, touched}) => (
           <Form>
             <CustomField name={'cash'} translationFrom={'interest-rate'} placeholder='100' />
-            { errors.amount && touched.amount ? 
+            { errors.cash && touched.cash ? 
             (
-              <CustomError error={errors.amount} />
+              <CustomError error={errors.cash} />
             )
             :
             null
             }
             <CustomField name={'credit'} translationFrom={'interest-rate'} placeholder='80' />
-            { errors.principal && touched.principal ? 
+            { errors.credit && touched.credit ? 
             (
-              <CustomError error={errors.principal} />
+              <CustomError error={errors.credit} />
             )
             :
             null
